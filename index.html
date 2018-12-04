@@ -4,7 +4,7 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-		<title>reveal.js</title>
+		<title>Immutability in JS</title>
 
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css">
@@ -20,12 +20,292 @@
 			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
 			document.getElementsByTagName( 'head' )[0].appendChild( link );
 		</script>
+
+		<style>
+		.img {
+			width: 1200px;
+			height: 600px;
+		}
+
+		.big-font > * {
+			font-size: 140% !important;
+		}
+
+		.high-lighted-text {
+			color:brown;
+		}
+		</style>
+
 	</head>
 	<body>
 		<div class="reveal">
 			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
+
+				<section data-markdown>
+					<textarea data-template>
+						## Immutability in JS Immutable.js
+
+						<img src="https://i.imgflip.com/2nenqp.jpg" title="made at imgflip.com"/>
+					</textarea>
+				</section>
+
+				<section>
+					<span>Artem Zekov, 17-year-old</span>
+					<p>RSS student</p>
+					<img src="./assets/me.jpg">
+				</section>
+
+				<section>
+					<h2>Immutable data</h2>
+					<span class="fragment">A data that can't be changed once it was created</span>
+				</section>
+
+				<section>
+					<span class="fragment fade-in">Mutable array</span>
+					<span class="fragment fade-in" data-markdown>
+						```javascript
+						let array = [1, 2, 3, 4];
+						let reversedArray = array.reverse();
+						console.log(reversedArray); // [4, 3, 2, 1]
+						console.log(array); // [4, 3, 2, 1]
+						```
+					</span>
+				</section>
+
+				<section>
+					<img src="https://i.imgflip.com/2nn1br.jpg" title="made at imgflip.com"/>
+				</section>
+
+				<section>
+					<span class="fragment fade-in">Immutable array</span>
+					<span class="fragment fade-in" data-markdown>
+						```javascript
+						let array = new Immutable.List([1, 2, 3, 4]);
+						// we create new array based on previous array
+						let reversedArray = array.toJS().reverse();
+						console.log(reversedArray); // [4, 3, 2, 1]
+						console.log(array.toJS()); // [1, 2, 3, 4]
+						```
+					</span>
+				</section>
+
+				<section>
+					<span>Under the hood - mutability</span>
+					<div style="position: relative; height: 300px; width: 78%; margin: 0 auto;" >
+						<img src="./assets/array.png" class="fragment fade-out" style="position:absolute; left: 0; right: 0;" data-fragment-index="0">
+						<img src="./assets/changed-array.png" class="fragment fade-in" style="position:absolute;left: 0; right: 0;" data-fragment-index="0">
+					</div>
+				</section>
+
+				<section>
+					<span>Under the hood - immutability</span>
+					<div style="position: relative; height: 300px; width: 78%; margin: 0 auto;" >
+						<img src="./assets/im-array.png" class="fragment fade-out img" style="position:absolute; left: 0; right: 0;" data-fragment-index="0">
+						<img src="./assets/changed-im-array.png" class="fragment fade-in img" style="position:absolute;left: 0; right: 0;" data-fragment-index="0">
+					</div>
+				</section>
+
+				<section>
+					<h3>Any attempt to mutate = new copy</h3>
+				</section>
+
+				<section>
+					<span data-markdown>
+						```javascript
+						let array = new Immutable.List([]);
+						for (let i = 0; i < 10000000; i++) {
+							array.push(i);
+						}
+						```
+					</span>
+					<img src="https://i.imgflip.com/2nyoib.jpg" title="made at imgflip.com" class="fragment fade-in"/>
+				</section>
+
+				<section>
+					<h3>Is Immutability worth using it?</h3>
+					<img src="https://i.imgflip.com/2nn1y1.jpg" title="made at imgflip.com"/>
+				</section>
+
+				<section>
+					<h2>Copying wastes time and space :(</h2>
+					<h3 class="fragment fade-in">but...</h3>
+				</section>
+
+				<section>
+					<h2>There must be a better way...</h2>
+				</section>
+
+				<section>
+					<h2>Persistant data structures :)</h2>
+					<span>Data structures which are able to save old versions of themselves</span>
+				</section>
+
+				<section>
+					<h4>Structural sharing</h4>
+					<div style="position: relative; height: 300px; width: 78%; margin: 0 auto;" >
+						<img src="./assets/structural-1.png" class="fragment fade-in-then-out img" style="position:absolute; left: 0; right: 0;" data-fragment-index="0">
+						<img src="./assets/structural-2.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="1">
+						<img src="./assets/structural-3.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="2">
+						<img src="./assets/structural-4.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="3">
+						<img src="./assets/structural-5.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="4">
+						<img src="./assets/structural-6.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="5">
+						<img src="./assets/structural-7.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="6">
+						<img src="./assets/structural-8.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="7">
+						<img src="./assets/structural-9.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="8">
+					</div>
+				</section>
+
+				<section class="big-font">
+					<span>Old versions never change :)</span>
+					<p class="fragment fade-in">    (they just sit, and are)   </p>
+				</section>
+
+				<section class="big-font">
+					<span>New versions created efficeently :D</span>
+					<p class="fragment fade-in">    (with a help of structural sharing)   </p>
+				</section>
+
+				<section>
+					<h4>Libraries for immutability in JS</h4>
+					<img src="./assets/Immutable-js.png" class="fragment fade-in">
+					<img src="./assets/mori-js.png" class="fragment fade-in">
+				</section>
+
+				<section>
+					<img src="./assets/array-difference.png">
+					<img src="./assets/object-difference.png">
+				</section>
+
+				<section>
+					<h3>Let's dive into Immutable.js!</h3>
+					<img src="https://i.imgflip.com/2o2o7i.jpg" title="made at imgflip.com"/>
+				</section>
+
+				<section>
+					<h4>Data Structures provided by Immutable.js</h4>
+					<ul>
+						<li class="fragment fade-in">List</li>
+						<li class="fragment fade-in">Map</li>
+						<li class="fragment fade-in">Stack</li>
+						<li class="fragment fade-in">Set</li>
+					</ul>
+				</section>
+
+				<section>
+					<h2>Immutable <span class="high-lighted-text">Map</span> useful methods:</h2>
+					<ul>
+						<li class="fragment">Map(jsObject)</li>
+						<li class="fragment">Map.isMap(maybyMap) <span class="high-lighted-text">--> true/false</span></li>
+						<li class="fragment">set(key, value) <span class="high-lighted-text">--> new map</span></li>
+						<li class="fragment">get(key) <span class="high-lighted-text">--> value</span></li>
+						<li class="fragment">delete(key) <span class="high-lighted-text">--> map without key</span></li>
+						<li class="fragment">toJS() <span class="high-lighted-text">--> JS object</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Map usage example</h4>
+					<span data-markdown class="fragment fade-in">
+						```javascript
+						const { Map } = require('immutable');
+						let map1 = Map({a:1, b:2, c:3});
+						let map2 = map1.set('b', 50);
+						console.log( map1.get('b') ); // 2
+						console.log( map2.get('b') ); // 50
+
+						let jsObject = map2.toJS();
+						console.log(jsObject); // { a: 1, b: 50, c: 3 }
+
+						console.log(Map.isMap(map1)); // true
+						console.log(Map.isMap(jsObject)); // false
+
+						let mapWithoutBprop = map2.delete('b');
+						console.log(mapWithoutBprop.toJS()); // { a: 1, c: 3 }
+						```
+					</span>
+				</section>
+
+				<section>
+					<h2>Immutable <span class="high-lighted-text">List</span> useful methods and props:</h2>
+					<ul>
+						<li class="fragment">List(jsArray)</li>
+						<li class="fragment">List.isList(maybyList) <span class="high-lighted-text">--> true/false</span></li>
+						<li class="fragment">size <span class="high-lighted-text">--> list length</span></li>
+						<li class="fragment">set(index, value) <span class="high-lighted-text">--> new list</span></li>
+						<li class="fragment">delete(index) <span class="high-lighted-text">--> new list without list[index]</span></li>
+						<li class="fragment">insert(index, value) <span class="high-lighted-text">--> new list</span></li>
+						<li class="fragment">push(value) <span class="high-lighted-text">--> new list</span></li>
+						<li class="fragment">pop() <span class="high-lighted-text">--> new list</span></li>
+						<li class="fragment">toJS() <span class="high-lighted-text">--> JS object</span></li>
+					</ul>
+				</section>
+
+				<section>
+					<h4>Immutable List usage</h4>
+					<span data-markdown class="fragment fade-in">
+						```javascript
+							const { List } = require('immutable');
+							let list1 = List([1, 2, 3, 4]);
+							let arrayFromList = list1.toJS();
+
+							console.log(arrayFromList); // [1, 2, 3, 4]
+							console.log(List.isList(list1)); // true
+							console.log(List.isList(arrayFromList)); // false
+
+							let list2 = list1.push(5).delete(0);
+							console.log(list2.toJS()); // [2, 3, 4, 5]
+							console.log(list2.size); // 4
+						```
+					</span>
+				</section>
+
+				<section>
+					<h3>Undo-Redo Demo with immutable.js</h3>
+					<a href="https://mrstalon.github.io/undo-redo-with-immutable.js/" target="_blank">Website demo</a>
+					<p><a href="https://github.com/mrstalon/undo-redo-with-immutable.js/tree/gh-pages" target="_blank">Source code</a></p>
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-1.png">
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-2.png">
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-3.png">
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-4.png">
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-5.png">
+				</section>
+
+				<section>
+					<img src="./assets/undo-code-6.png">
+				</section>
+
+				<section>
+					<h3>It's that simple!!</h3>
+					<ul>
+						<li class="fragment">Create <span class="high-lighted-text">history</span> array that contains states</li>
+						<li class="fragment">Create <span class="high-lighted-text">operation</span> wrapper for mutations</li>
+						<li class="fragment">Wrap all mutations in <span class="high-lighted-text">operation</span> wrapper</li>
+						<li class="fragment">Enjoy undo-redo feature!!</li>
+					</ul>
+				</section>
+
+				<section>
+					<img src="https://i.imgflip.com/2o3x5f.jpg" title="made at imgflip.com"/>
+				</section>
+
+				<section>
+					<h3>Thank you!!!</h3>
+				</section>
 			</div>
 		</div>
 
