@@ -58,6 +58,12 @@
 					<span>Artem Zekov, 17-year-old</span>
 					<p>RSS student</p>
 					<img src="./assets/me.jpg">
+
+					<aside class="notes">
+						I am in absolute love with Javascript
+						that's why I will do my best to explain
+						you today's topic.
+					</aside>
 				</section>
 
 				<section>
@@ -75,6 +81,11 @@
 						console.log(array); // [4, 3, 2, 1]
 						```
 					</span>
+
+					<aside class="notes">
+						1. Problem of mutability
+						So, what is the solution of this problem?
+					</aside>
 				</section>
 
 				<section>
@@ -92,6 +103,12 @@
 						console.log(array.toJS()); // [1, 2, 3, 4]
 						```
 					</span>
+
+					<aside class="notes">
+						Any mutation on array creates a new copy of it.
+						That is why array and reversedArray are two
+						independent arrays.
+					</aside>
 				</section>
 
 				<section>
@@ -100,6 +117,11 @@
 						<img src="./assets/array.png" class="fragment fade-out" style="position:absolute; left: 0; right: 0;" data-fragment-index="0">
 						<img src="./assets/changed-array.png" class="fragment fade-in" style="position:absolute;left: 0; right: 0;" data-fragment-index="0">
 					</div>
+
+					<aside class="notes">
+						On the one hand, since in JS, variables that contain array are just
+						references, any attemp to change it's values, change them :)
+					</aside>
 				</section>
 
 				<section>
@@ -108,6 +130,13 @@
 						<img src="./assets/im-array.png" class="fragment fade-out img" style="position:absolute; left: 0; right: 0;" data-fragment-index="0">
 						<img src="./assets/changed-im-array.png" class="fragment fade-in img" style="position:absolute;left: 0; right: 0;" data-fragment-index="0">
 					</div>
+
+					<aside class="notes">
+						On the other hand, we have Immutability. Significantly different
+						approach to programming. Any mutation creates new copy of a D-S.
+						There is no way to mutate original D-S. Only replacing it with
+						new version.
+					</aside>
 				</section>
 
 				<section>
@@ -124,11 +153,20 @@
 						```
 					</span>
 					<img src="https://i.imgflip.com/2nyoib.jpg" title="made at imgflip.com" class="fragment fade-in"/>
+
+					<aside class="notes">
+						If any attemp to mutate D-S creates a new copy of it.
+						Consider this code. I know what you are thinking.
+					</aside>
 				</section>
 
 				<section>
 					<h3>Is Immutability worth using it?</h3>
 					<img src="https://i.imgflip.com/2nn1y1.jpg" title="made at imgflip.com"/>
+
+					<aside class="notes">
+						That's a good question. Let's check it out!
+					</aside>
 				</section>
 
 				<section>
@@ -143,6 +181,11 @@
 				<section>
 					<h2>Persistant data structures :)</h2>
 					<span>Data structures which are able to save old versions of themselves</span>
+
+					<aside class="notes">
+						Data strtuctures which are able to save old
+						versions of themselves.
+					</aside>
 				</section>
 
 				<section>
@@ -158,6 +201,28 @@
 						<img src="./assets/structural-8.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="7">
 						<img src="./assets/structural-9.png" class="fragment fade-in-then-out img" style="position:absolute;left: 0; right: 0;" data-fragment-index="8">
 					</div>
+
+					<aside class="notes">
+						1. Represent our array as a tree (put all values into the leaves of the tree)
+						2. Connect them with the parent nodes and parent nodes with their parent node
+						all the way up to the root node.
+						3. Here is our array represented as a tree.  
+
+						How do we update something?
+
+						1. Make a new node where I still got 0 value and changed value
+						2. Then I need to copy any of the parent nodes that were pointing to
+						the node that I changed
+						3. So I trace a path up towards the root of the tree
+						4. And now I've got new root, which means - new version of D-S
+
+
+						It makes a perfomance of a Immutable D-S very fast. So, instead of copying the entire array
+						we just copy nodes on the way to changed node. In fact, we reuse previous state.
+
+						That's called structural sharing because we are sharing the structure of the tree
+						between the two versions.
+					</aside>
 				</section>
 
 				<section class="big-font">
@@ -179,11 +244,22 @@
 				<section>
 					<img src="./assets/array-difference.png">
 					<img src="./assets/object-difference.png">
+
+					<aside class="notes">
+						Astonishing part here is that Mori.js is even faster than native JS.
+						Immutable.js has great Array perfomance, but according to objects
+						Immutable.js is not as good as native JS and Mori.
+					</aside>
 				</section>
 
 				<section>
 					<h3>Let's dive into Immutable.js!</h3>
 					<img src="https://i.imgflip.com/2o2o7i.jpg" title="made at imgflip.com"/>
+
+					<aside class="notes">
+						Now when we are familiar with immutability principles
+						we will dive into usage of Immutable.js
+					</aside>
 				</section>
 
 				<section>
@@ -268,6 +344,14 @@
 					<h3>Undo-Redo Demo with immutable.js</h3>
 					<a href="https://mrstalon.github.io/undo-redo-with-immutable.js/" target="_blank">Website demo</a>
 					<p><a href="https://github.com/mrstalon/undo-redo-with-immutable.js/tree/gh-pages" target="_blank">Source code</a></p>
+
+					<aside class="notes">
+						After I'd explored Immutability and Immutable.js I dediced to make something
+						with a use of my new knowledge. Specifically, I decided to create undo-redo example
+						with Immutable.js. Two links.
+
+						Let's have a brief look to my demo and then we will get to the source code.
+					</aside>
 				</section>
 
 				<section>
@@ -302,10 +386,21 @@
 						<li class="fragment">Wrap all mutations in <span class="high-lighted-text">operation</span> wrapper</li>
 						<li class="fragment">Enjoy undo-redo feature!!</li>
 					</ul>
+
+					<aside class="notes">
+						Note that any mutation in your code should return
+						a new version of state
+					</aside>
 				</section>
 
 				<section>
 					<img src="https://i.imgflip.com/2o3x5f.jpg" title="made at imgflip.com"/>
+
+					<aside class="notes">
+						Now since you are familiar with immutability principles and Immutable.js
+						library, you will be able to choose from two options and I hope
+						you will make right decision, THANK YOU.
+					</aside>
 				</section>
 
 				<section>
