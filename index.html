@@ -60,8 +60,10 @@
 					<img src="./assets/me.jpg">
 
 					<aside class="notes">
-						I am in absolute love with Javascript
-						that's why I will do my best to explain
+						I've been coding on Javascript for over a year.
+						I really love this language.
+						That's why I am very interested in this topic
+						And That's is why will do my best to explain
 						you today's topic.
 					</aside>
 				</section>
@@ -69,6 +71,10 @@
 				<section>
 					<h2>Immutable data</h2>
 					<span class="fragment">A data that can't be changed once it was created</span>
+
+					<aside class="notes">
+						Let's get started with the definition of Immutable data.
+					</aside>
 				</section>
 
 				<section>
@@ -83,8 +89,50 @@
 					</span>
 
 					<aside class="notes">
-						1. Problem of mutability
-						So, what is the solution of this problem?
+						Simple example of mutability
+					</aside>
+				</section>
+
+				<section>
+					<h3>Problems of mutability</h3>
+					<ul>
+						<li class="fragment">Makes our code unpredictable</li>
+						<li class="fragment">Harder to test</li>
+					</ul>
+
+					<aside class="notes">
+						And here we came up with problems of mutability.
+					</aside>
+				</section>
+
+				<section>
+					<h3>Unpredictable code</h3>
+
+					<span data-markdown>
+						```javascript
+						let array = [1, 2, 3, 4];
+						// 1000 of lines of code
+						// Lots of them
+
+						function printReversedArray(array) {
+							console.log(array.reverse());
+						}
+
+						// 1000000 lines of code
+						// Many of them
+
+						function calcSum(array) {
+							???
+						}
+						```
+					</span>
+
+					<aside class="notes">
+						Consider this unpredictable code.
+						Imagine that you are working on a very big project....
+						Unpredictability will bring you to hours of suffering through
+						debugging and testing your code.
+						Anyway, what is the solution of this problem?
 					</aside>
 				</section>
 
@@ -119,8 +167,9 @@
 					</div>
 
 					<aside class="notes">
-						On the one hand, since in JS, variables that contain array are just
-						references, any attemp to change it's values, change them :)
+						On the one hand, since in JS, variables just contain references to
+						arrays and objects, any attemp to change it's values, mutate it.
+						Moreover, we've got these tricky array methods that mutate original array.
 					</aside>
 				</section>
 
@@ -156,7 +205,10 @@
 
 					<aside class="notes">
 						If any attemp to mutate D-S creates a new copy of it.
-						Consider this code. I know what you are thinking.
+						Consider this code.
+						As far as I concerned, we are about to create 10 millions
+						Immutable lists.
+						I know what you are thinking.
 					</aside>
 				</section>
 
@@ -203,31 +255,44 @@
 					</div>
 
 					<aside class="notes">
-						1. Represent our array as a tree (put all values into the leaves of the tree)
+						1. Let's represent our array as a tree (put all values into the leaves of the tree)
 						2. Connect them with the parent nodes and parent nodes with their parent node
 						all the way up to the root node.
-						3. Here is our array represented as a tree.  
+						3. Here is our array represented as a tree.
 
 						How do we update something?
 
-						1. Make a new node where I still got 0 value and changed value
+						In fact, we don't need to copy the entire tree, we
+						just need to copy only one node that we want to change.
+						For instence, let's change this very bottom left node.
+						Specifically it's value 1 to something else.
+
+						1. So we are making a copy of a this very bottom left node.
 						2. Then I need to copy any of the parent nodes that were pointing to
-						the node that I changed
-						3. So I trace a path up towards the root of the tree
-						4. And now I've got new root, which means - new version of D-S
+						the node I changed
+						3. I basically trace a path up towards the root node.
+						4. And now I've got new root, which means - new version of D-S.
 
 
-						It makes a perfomance of a Immutable D-S very fast. So, instead of copying the entire array
+						So, instead of copying the entire array
 						we just copy nodes on the way to changed node. In fact, we reuse previous state.
 
 						That's called structural sharing because we are sharing the structure of the tree
 						between the two versions.
+
+						To sum up, structural sharing makes it possible to implement persistant
+						D-S to our programming world. And it's obviously makes perfomance of
+						immutable D-S very fast.
 					</aside>
 				</section>
 
 				<section class="big-font">
 					<span>Old versions never change :)</span>
 					<p class="fragment fade-in">    (they just sit, and are)   </p>
+
+					<aside class="notes">
+						The idea here is that old versions never change. They just sit, and are.
+					</aside>
 				</section>
 
 				<section class="big-font">
@@ -239,6 +304,11 @@
 					<h4>Libraries for immutability in JS</h4>
 					<img src="./assets/Immutable-js.png" class="fragment fade-in">
 					<img src="./assets/mori-js.png" class="fragment fade-in">
+
+					<aside class="notes">
+						Now I will tell you the most popular libraries
+						that brings immutability to JS.
+					</aside>
 				</section>
 
 				<section>
@@ -317,7 +387,7 @@
 						<li class="fragment">insert(index, value) <span class="high-lighted-text">--> new list</span></li>
 						<li class="fragment">push(value) <span class="high-lighted-text">--> new list</span></li>
 						<li class="fragment">pop() <span class="high-lighted-text">--> new list</span></li>
-						<li class="fragment">toJS() <span class="high-lighted-text">--> JS object</span></li>
+						<li class="fragment">toJS() <span class="high-lighted-text">--> JS array</span></li>
 					</ul>
 				</section>
 
@@ -355,27 +425,11 @@
 				</section>
 
 				<section>
-					<img src="./assets/undo-code-1.png">
-				</section>
-
-				<section>
 					<img src="./assets/undo-code-2.png">
 				</section>
 
 				<section>
 					<img src="./assets/undo-code-3.png">
-				</section>
-
-				<section>
-					<img src="./assets/undo-code-4.png">
-				</section>
-
-				<section>
-					<img src="./assets/undo-code-5.png">
-				</section>
-
-				<section>
-					<img src="./assets/undo-code-6.png">
 				</section>
 
 				<section>
