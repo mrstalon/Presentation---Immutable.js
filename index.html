@@ -53,30 +53,6 @@
 				</section>
 
 				<section>
-					<h2>Slides</h2>
-					<a href="https://mrstalon.github.io/Presentation---Immutable.js/" target="_blank">Presentation</a>
-
-					<aside class="notes">
-						Firstly, does anyone need link to the presentation?
-					</aside>
-				</section>
-
-				<section>
-					<span>Artem Zekov, 17-year-old</span>
-					<p>RSS student</p>
-					<img src="./assets/me.jpg">
-
-					<aside class="notes">
-						For the beginning, few words about me.
-						I've been coding on Javascript for over a year.
-						I really love this language.
-						That's why I am very interested in this topic
-						And That's is why will do my best to explain
-						you today's topic.
-					</aside>
-				</section>
-
-				<section>
 					<h2>Immutable data</h2>
 					<span class="fragment">A data that can't be changed once it was created</span>
 
@@ -309,13 +285,11 @@
 				</section>
 
 				<section>
-					<h4>Libraries for immutability in JS</h4>
+					<h4>Immutable.js</h4>
 					<img src="./assets/Immutable-js.png" class="fragment fade-in">
-					<img src="./assets/mori-js.png" class="fragment fade-in">
 
 					<aside class="notes">
-						Now I will tell you the most popular libraries
-						that brings immutability to JS.
+						Library by facebook
 					</aside>
 				</section>
 
@@ -363,28 +337,6 @@
 				</section>
 
 				<section>
-					<h4>Map usage example</h4>
-					<span data-markdown class="fragment fade-in">
-						```javascript
-						const { Map } = require('immutable');
-						let map1 = Map({a:1, b:2, c:3});
-						let map2 = map1.set('b', 50);
-						console.log( map1.get('b') ); // 2
-						console.log( map2.get('b') ); // 50
-
-						let jsObject = map2.toJS();
-						console.log(jsObject); // { a: 1, b: 50, c: 3 }
-
-						console.log(Map.isMap(map1)); // true
-						console.log(Map.isMap(jsObject)); // false
-
-						let mapWithoutBprop = map2.delete('b');
-						console.log(mapWithoutBprop.toJS()); // { a: 1, c: 3 }
-						```
-					</span>
-				</section>
-
-				<section>
 					<h2>Immutable <span class="high-lighted-text">List</span> useful methods and props:</h2>
 					<ul>
 						<li class="fragment">List(jsArray)</li>
@@ -397,25 +349,6 @@
 						<li class="fragment">pop() <span class="high-lighted-text">--> new list</span></li>
 						<li class="fragment">toJS() <span class="high-lighted-text">--> JS array</span></li>
 					</ul>
-				</section>
-
-				<section>
-					<h4>Immutable List usage</h4>
-					<span data-markdown class="fragment fade-in">
-						```javascript
-							const { List } = require('immutable');
-							let list1 = List([1, 2, 3, 4]);
-							let arrayFromList = list1.toJS();
-
-							console.log(arrayFromList); // [1, 2, 3, 4]
-							console.log(List.isList(list1)); // true
-							console.log(List.isList(arrayFromList)); // false
-
-							let list2 = list1.push(5).delete(0);
-							console.log(list2.toJS()); // [2, 3, 4, 5]
-							console.log(list2.size); // 4
-						```
-					</span>
 				</section>
 
 				<section>
