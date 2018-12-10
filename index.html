@@ -113,7 +113,9 @@
 
 					<aside class="notes">
 						Consider this unpredictable code.
-						Imagine that you are working on a very big project....
+						Imagine that you are working on a very big project as a part of a team.
+						Each developer is responsible for some part of the app. All parts are connected
+						to each other.
 						Unpredictability will bring you to hours of suffering through
 						debugging and testing your code.
 						Anyway, what is the solution of this problem?
@@ -239,27 +241,12 @@
 					</div>
 
 					<aside class="notes">
-						1. Let's represent our array as a tree (put all values into the leaves of the tree)
-						2. Connect them with the parent nodes and parent nodes with their parent node
-						all the way up to the root node.
-						3. Here is our array represented as a tree.
-
-						How do we update something?
-
-						In fact, we don't need to copy the entire tree, we
-						just need to copy only one node that we want to change.
-						For instence, let's change this very bottom left node.
-						Specifically it's value 1 to something else.
-
-						1. So we are making a copy of a this very bottom left node.
-						2. Then I need to copy any of the parent nodes that were pointing to
-						the node I changed
-						3. I basically trace a path up towards the root node.
-						4. And now I've got new root, which means - new version of D-S.
-
-
-						So, instead of copying the entire array
-						we just copy nodes on the way to changed node. In fact, we reuse previous state.
+						Let's represent our array as a tree, by putting all values into leaves of the tree.
+						Here is our root node. How do we change something?
+						Well, in order to change something you simply need to create a copy of node
+						you want to make a change inside. And then, make a new tree based on your new node
+						and unchanged nodes of the priveous tree. As you can see here, we reused
+						75% of our initial tree.
 
 						That's called structural sharing because we are sharing the structure of the tree
 						between the two versions.
@@ -298,9 +285,8 @@
 					<img src="./assets/object-difference.png">
 
 					<aside class="notes">
-						Astonishing part here is that Mori.js is even faster than native JS.
-						Immutable.js has great Array perfomance, but according to objects
-						Immutable.js is not as good as native JS and Mori.
+						Astonishing part here is that Immutable.js has the same perfomance
+						as Native JS does. Moreover, object's perfomance it's not dat bad
 					</aside>
 				</section>
 
@@ -310,7 +296,7 @@
 
 					<aside class="notes">
 						Now when we are familiar with immutability principles
-						we will dive into usage of Immutable.js
+						we can dive into usage of Immutable.js
 					</aside>
 				</section>
 
@@ -349,43 +335,6 @@
 						<li class="fragment">pop() <span class="high-lighted-text">--> new list</span></li>
 						<li class="fragment">toJS() <span class="high-lighted-text">--> JS array</span></li>
 					</ul>
-				</section>
-
-				<section>
-					<h3>Undo-Redo Demo with immutable.js</h3>
-					<a href="https://mrstalon.github.io/undo-redo-with-immutable.js/" target="_blank">Website demo</a>
-					<p><a href="https://github.com/mrstalon/undo-redo-with-immutable.js/tree/gh-pages" target="_blank">Source code</a></p>
-
-					<aside class="notes">
-						After I'd explored Immutability and Immutable.js I dediced to make something
-						with a use of my new knowledge. Specifically, I decided to create undo-redo example
-						with Immutable.js. Two links.
-
-						Let's have a brief look to my demo and then we will get to the source code.
-					</aside>
-				</section>
-
-				<section>
-					<img src="./assets/undo-redo.png">
-				</section>
-
-				<section>
-					<img src="./assets/undo-code-3.png">
-				</section>
-
-				<section>
-					<h3>It's that simple!!</h3>
-					<ul>
-						<li class="fragment">Create <span class="high-lighted-text">history</span> array that contains states</li>
-						<li class="fragment">Create <span class="high-lighted-text">operation</span> wrapper for mutations</li>
-						<li class="fragment">Wrap all mutations in <span class="high-lighted-text">operation</span> wrapper</li>
-						<li class="fragment">Enjoy undo-redo feature!!</li>
-					</ul>
-
-					<aside class="notes">
-						Note that any mutation in your code should return
-						a new version of state
-					</aside>
 				</section>
 
 				<section>
