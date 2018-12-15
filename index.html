@@ -48,7 +48,8 @@
 						<img src="./assets/Imtbl.png"/>
 
 						Note:
-						Hello everyone, my topic for today is Immutability and Immutable.js library.
+						Hello everyone, my name is Artem Zekov. And the topic of my speech is
+						Immutability and Immutable.js library.
 					</textarea>
 				</section>
 
@@ -112,10 +113,10 @@
 					</span>
 
 					<aside class="notes">
-						Consider this unpredictable code.
+						Let's have a look a this code.
 						Imagine that you are working on a very big project as a part of a team.
 						Each developer is responsible for some part of the app. All parts are connected
-						to each other.
+						to each other. Your co-worker may mutate something by accident. For instance....
 						Unpredictability will bring you to hours of suffering through
 						debugging and testing your code.
 						Anyway, what is the solution of this problem?
@@ -139,9 +140,7 @@
 					</span>
 
 					<aside class="notes">
-						Any mutation on array creates a new copy of it.
-						That is why array and reversedArray are two
-						independent arrays.
+						In this example we have two independent arrays.
 					</aside>
 				</section>
 
@@ -155,7 +154,6 @@
 					<aside class="notes">
 						On the one hand, since in JS, variables just contain references to
 						arrays and objects, any attemp to change it's values, mutate it.
-						Moreover, we've got these tricky array methods that mutate original array.
 					</aside>
 				</section>
 
@@ -167,8 +165,7 @@
 					</div>
 
 					<aside class="notes">
-						On the other hand, we have Immutability. Significantly different
-						approach to programming. Any mutation creates new copy of a D-S.
+						Any mutation creates new copy of a D-S.
 						There is no way to mutate original D-S. Only replacing it with
 						new version.
 					</aside>
@@ -251,9 +248,7 @@
 						That's called structural sharing because we are sharing the structure of the tree
 						between the two versions.
 
-						To sum up, structural sharing makes it possible to implement persistant
-						D-S to our programming world. And it's obviously makes perfomance of
-						immutable D-S very fast.
+						This concept of reusing unchanged data gives immutable D-S very good perfomance.
 					</aside>
 				</section>
 
@@ -276,7 +271,8 @@
 					<img src="./assets/Immutable-js.png" class="fragment fade-in">
 
 					<aside class="notes">
-						Library by facebook
+						The most popular library for Immutability in JS is Immutable.js. 
+						This library was created by facebook
 					</aside>
 				</section>
 
@@ -286,7 +282,9 @@
 
 					<aside class="notes">
 						Astonishing part here is that Immutable.js has the same perfomance
-						as Native JS does. Moreover, object's perfomance it's not dat bad
+						as Native JS does. Moreover, object's perfomance it's not dat bad.
+						All these perfomance results are possible with a help of PERSISTANT-D-S and
+						structural sharing.
 					</aside>
 				</section>
 
